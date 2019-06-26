@@ -4,47 +4,42 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myjavalearning.springboot.Repository.TopicRepository;
 import com.myjavalearning.springboot.domain.Topic;
 
 @Service
 public class TopicService {
-	
-	List<Topic> topicList= new ArrayList<Topic>( Arrays.asList(new Topic(1,"java","java traininig"),
-			new Topic(2,"react","react training"),
-			new Topic(3,"Node.js","Node.JS training")));
-	
-	public List<Topic> getAllTopics(){
-		return topicList;
+
+	@Autowired
+	TopicRepository topicRepo;
+
+	public List<Topic> getAllTopics() {
+		List<Topic> topics = new ArrayList<Topic>();
+		topicRepo.findAll().forEach(topics::add);
+		return topics;
 	}
-	
+
 	public Topic getTopicById(Integer id) {
-		
-				
-		try {
-			return topicList.stream().filter(obj -> obj.getId().equals(id)).findFirst().get();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			return null;
-		}
-		
+
+		return topicRepo.findOne(id);
 	}
 
 	public void addTopic(Topic topic) {
-		topicList.add(topic);
-		// TODO Auto-generated method stub
-		
+
+		topicRepo.save(topic);
 	}
 
 	public void updateTopic(Integer id, Topic topic) {
-		// TODO Auto-generated method stub
-		for (int i = 0; i < topicList.size(); i++) {
-			Topic t = topicList.get(i);
-			if(t.getId().equals(id)) {
-				topicList.set(i, topic);
-				return;
-			}
-		}
+
+		topicRepo.save(topic);
+	}
+
+	public void deleteTopic(Integer id) {
+
+		topicRepo.delete(id);
+		;
 	}
 }

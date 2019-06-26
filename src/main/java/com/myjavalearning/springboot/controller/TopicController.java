@@ -32,6 +32,8 @@ public class TopicController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/topics")
 	public void addTopic(@RequestBody Topic topic) {
+		
+		System.out.println(" topic object  "+topic.toString());
 		topicService.addTopic(topic);
 		
 	}
@@ -40,6 +42,12 @@ public class TopicController {
 	public void updateTopic(@RequestBody Topic topic, @PathVariable Integer id) {
 		System.out.println(" current topic to update "+topic);
 		topicService.updateTopic(id,topic);
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/topics/{id}")
+	public void deleteTopic(@PathVariable Integer id) {
+		topicService.deleteTopic(id);
 		
 	}
 

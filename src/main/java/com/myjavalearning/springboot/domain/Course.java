@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Topic {
+public class Course {
 	
 	@Id
 	private Integer id;
@@ -28,13 +28,13 @@ public class Topic {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Topic(Integer id, String name, String description) {
+	public Course(Integer id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 	}
-	public Topic() {
+	public Course() {
 		super();
 	}
 	
