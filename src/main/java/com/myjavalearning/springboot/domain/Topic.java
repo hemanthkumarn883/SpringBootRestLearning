@@ -4,11 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+
 @Entity
 public class Topic {
 	
 	@Id
-	@GeneratedValue
+//	@GeneratedValue
 	private Integer id;
 	private String name;
 	private String description;
